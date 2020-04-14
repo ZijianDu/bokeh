@@ -219,6 +219,7 @@ export class Plot extends LayoutDOM {
   add_layout(renderer: Annotation | GuideRenderer, side: Place = "center"): void {
     const side_renderers = this.getv(side)
     side_renderers.push(renderer as any /* XXX */)
+    this.properties[side].change.emit()
   }
 
   remove_layout(renderer: Annotation | GuideRenderer): void {

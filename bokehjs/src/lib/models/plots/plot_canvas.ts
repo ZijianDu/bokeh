@@ -867,9 +867,13 @@ export class PlotView extends LayoutDOMView {
       this.connect(rng.change, () => {this._needs_layout = true; this.request_paint()})
     }
 
-    this.connect(this.model.properties.renderers.change, async () => {
-      await this.build_renderer_views()
-    })
+    this.connect(this.model.properties.above.change, async () => {await this.build_renderer_views()})
+    this.connect(this.model.properties.below.change, async () => {await this.build_renderer_views()})
+    this.connect(this.model.properties.left.change, async () => {await this.build_renderer_views()})
+    this.connect(this.model.properties.right.change, async () => {await this.build_renderer_views()})
+    this.connect(this.model.properties.center.change, async () => {await this.build_renderer_views()})
+    this.connect(this.model.properties.renderers.change, async () => {await this.build_renderer_views()})
+
     this.connect(this.model.toolbar.properties.tools.change, async () => {
       await this.build_renderer_views()
       await this.build_tool_views()
